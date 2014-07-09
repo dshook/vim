@@ -1,23 +1,3 @@
-" detect what's going on
-let win = 0
-let mac = 0
-if has("unix")
-    let mac = 1
-endif
-if has("win32")
-    let win = 1
-endif
-
-if win
-    " win shiiet
-    set nocompatible
-    source $VIMRUNTIME/vimrc_example.vim
-    source $VIMRUNTIME/mswin.vim
-    behave mswin
-
-    :set guioptions-=T "remove toolbar
-
-endif
 
 let mapleader = ";"
 
@@ -26,19 +6,14 @@ filetype off
 
 set rtp+=~/vimfiles/bundle/Vundle.vim/
 let path='~/vimfiles/bundle'
-
 call vundle#begin(path)
 
 Plugin 'gmarik/Vundle.vim'
 
 " Editing utils
 Plugin 'Align'
-if mac
-    Plugin 'Valloric/YouCompleteMe'
-endif
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
-Plugin 'scrooloose/nerdcommenter'
-" Plugin 'SirVer/ultisnips'
 
 " Panels / Windows
 " Plugin 'tpope/vim-fugitive'
@@ -47,14 +22,14 @@ Plugin 'kien/ctrlp.vim'
 " Plugin 'sjl/gundo.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'scrooloose/nerdtree'
-Plugin 'joonty/vdebug'
+" Plugin 'joonty/vdebug'
 Plugin 'bling/vim-airline'
 
 " Javascript / JSON / Coffeescript
-" Plugin 'marijnh/tern_for_vim'
-" Plugin 'helino/vim-json'
-" Plugin 'JavaScript-Indent'
-" Plugin 'jelera/vim-javascript-syntax'
+Plugin 'marijnh/tern_for_vim'
+Plugin 'helino/vim-json'
+Plugin 'JavaScript-Indent'
+Plugin 'jelera/vim-javascript-syntax'
 
 " Color schemes
 Plugin 'BusyBee'
@@ -75,33 +50,27 @@ Plugin 'sickill/vim-monokai'
 Plugin 'john2x/flatui.vim'
 Plugin 'noahfrederick/vim-hemisu'
 
-
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 "call vundle#config#require(g:bundles)
 
 "look n feel --------------------------------------------------------
-if win
-    set guifont=Consolas:h10:cANSI
-endif
 syntax enable
 colorscheme codeschool
 
 set tabstop=4
 set softtabstop=4
-set expandtab!
+set expandtab
 set shiftwidth=4
 set shiftround
 set autoindent
 set copyindent
 set smarttab
 set smartindent
-
-if mac
-    " dont pop up preview window, ycm is enough
-    set completeopt-=preview
-endif
+ 
+" dont pop up preview window, ycm is enough
+set completeopt-=preview
 
 " lol backups
 set nobackup
@@ -126,13 +95,12 @@ set nowrap
 " show position
 set ruler
 
-if mac
-    " 2 spaces for my web life
-    au BufNewFile,BufReadPost *.less,*.hbs,*.coffee,*.js,*.css,*.scss,*.json,*.html setl shiftwidth=2  expandtab
+" 2 spaces for my web life
+au BufNewFile,BufReadPost *.less,*.hbs,*.coffee,*.js,*.css,*.scss,*.json,*.html setl shiftwidth=2  expandtab
 
-    " Markdown files
-    au Bufread,BufNewFile *.md set filetype=markdown
-endif
+" Markdown files
+au Bufread,BufNewFile *.md set filetype=markdown
+
 
 " plugin settings ------------------------------------------------------
 
@@ -151,18 +119,16 @@ nmap <silent> <leader>t :NERDTreeToggle<CR>
 " Search highlight
 let g:aghighlight=1
 
-if mac
-    " tern
-    let g:tern_show_signature_in_pum=1
-    nmap <silent> <F12> :TernDef<CR>
-    " nmap <silent> <c-s> :TernType<CR>
+" tern
+let g:tern_show_signature_in_pum=1
+nmap <silent> <F12> :TernDef<CR>
+" nmap <silent> <c-s> :TernType<CR>
 
-    " ycm completion
-    let g:ycm_add_preview_to_completeopt=0
-    let g:ycm_autoclose_preview_window_after_completion=1
-    let g:ycm_autoclose_preview_window_after_insertion=1
-    let g:ycm_cache_omnifunc=0
-endif
+" ycm completion
+let g:ycm_add_preview_to_completeopt=0
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_autoclose_preview_window_after_insertion=1
+let g:ycm_cache_omnifunc=0
 
 " Align Settings
 " Remove align maps scrit as to not super pollute leader keys
@@ -182,39 +148,12 @@ let g:airline_theme="powerlineish"
 " let syntastic clobber location list
 let g:syntastic_always_populate_loc_list=1
 
-if win
-    " Vdebug binds
-    "map <F10> :VdebugCommandStepOver<CR>
-    "map <F11> :VdebugCommandStepIn<CR>
-    "map <C-F11> :VdebugCommandStepOut<CR>
-    "map <F4> :VdebugCommandRunToCursor<CR>
-    map <F5> :VdebugStart<CR>
-    map <leader>b :Breakpoint<CR>
-
-    let g:vdebug_keymap = {
-    \    "run" : "<F5>",
-    \    "run_to_cursor" : "<F4>",
-    \    "step_over" : "<F10>",
-    \    "step_into" : "<F11>",
-    \    "step_out" : "<C-F11>",
-    \    "close" : "<F6>",
-    \    "detach" : "<F7>",
-    \    "set_breakpoint" : "<F3>",
-    \    "get_context" : "<F11>",
-    \    "eval_under_cursor" : "<F12>",
-    \    "eval_visual" : "<Leader>E",
-    \}
-
-    let g:vdebug_options={
-    \   "break_on_open" : 1,
-    \   "ide_key": 'netbeans-xdebug'
-    \}
-endif
-
 "key binds -----------------------------------------------------------------
 
 " auto search var under cursor
 :autocmd CursorMoved * silent! exe printf('match Visual /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+
+:nnoremap <F5> :buffers<CR>:buffer<Space>
 
 "buffer shiet
 map <leader>n :enew<cr>
@@ -223,9 +162,6 @@ map <leader>v :vnew<cr>
 map <leader>d :bd<cr>
 map <leader>c :bp<bar>sp<bar>bn<bar>bd<CR>
 map <leader>o :only<cr>
-
-" list buffers
-:nnoremap <leader>l :buffers<CR>:buffer<Space>
 
 " Map ctrl-movement keys to window switching
 map <C-k> <C-w><Up>
@@ -241,13 +177,8 @@ map <C-S-Tab> :bprevious<cr>
 nnoremap <leader>f :CtrlPFunky<Cr>
 nnoremap <leader>F :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
-"toggle show whitespace
-nmap <leader>w :set list!<CR>
-:set listchars=eol:¬,tab:>-,trail:~,extends:>,precedes:<
 
-" swap word with buffer
-map <leader>s diwh"0p<CR>
-
+" Other win 
 " easy edit vimrc
 map <leader>? :e ~/.vimrc<CR>
 
