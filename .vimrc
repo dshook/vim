@@ -16,7 +16,6 @@ if win
     behave mswin
 
     :set guioptions-=T "remove toolbar
-
 endif
 
 let mapleader = ";"
@@ -55,6 +54,9 @@ Plugin 'elzr/vim-json'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'Chiel92/vim-autoformat'
 
+" Detect indent
+Plugin 'ciaranm/detectindent'
+
 " Color schemes
 Plugin 'BusyBee'
 Plugin 'Blueshift'
@@ -89,8 +91,8 @@ colorscheme codeschool
 
 set tabstop=4
 set softtabstop=4
-set expandtab!
 set shiftwidth=4
+set expandtab!
 set shiftround
 set autoindent
 set copyindent
@@ -209,6 +211,11 @@ if win
     \   "ide_key": 'netbeans-xdebug'
     \}
 endif
+
+" detect indent
+:autocmd BufReadPost * :DetectIndent 
+:let g:detectindent_preferred_expandtab = 0
+:let g:detectindent_preferred_indent = 4
 
 "key binds -----------------------------------------------------------------
 
