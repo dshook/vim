@@ -41,20 +41,19 @@ Plugin 'scrooloose/nerdcommenter'
 " Plugin 'SirVer/ultisnips'
 
 " Panels / Windows
-" Plugin 'tpope/vim-fugitive'
 " Plugin 'LustyJuggler'
 Plugin 'kien/ctrlp.vim'
-" Plugin 'sjl/gundo.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'scrooloose/nerdtree'
 Plugin 'joonty/vdebug'
 Plugin 'bling/vim-airline'
 
 " Javascript / JSON / Coffeescript
-" Plugin 'marijnh/tern_for_vim'
-" Plugin 'helino/vim-json'
+Plugin 'marijnh/tern_for_vim'
+Plugin 'elzr/vim-json'
 " Plugin 'JavaScript-Indent'
-" Plugin 'jelera/vim-javascript-syntax'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'Chiel92/vim-autoformat'
 
 " Color schemes
 Plugin 'BusyBee'
@@ -241,6 +240,9 @@ map <C-S-Tab> :bprevious<cr>
 nnoremap <leader>f :CtrlPFunky<Cr>
 nnoremap <leader>F :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
+" autoformat (npm install -g js-beautify)
+map <C-f> :Autoformat<cr>
+
 "toggle show whitespace
 nmap <leader>w :set list!<CR>
 :set listchars=eol:¬,tab:>-,trail:~,extends:>,precedes:<
@@ -250,4 +252,10 @@ map <leader>s diwh"0p<CR>
 
 " easy edit vimrc
 map <leader>? :e ~/.vimrc<CR>
+
+"remap autocomplete to ctrl space
+inoremap <C-space> <C-n>
+inoremap <expr> <Tab> pumvisible() ? "\<C-Y>" : "\<Tab>"
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-p>"
 
