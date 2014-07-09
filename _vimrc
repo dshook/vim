@@ -206,6 +206,8 @@ nnoremap <leader>F :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 nmap <leader>w :set list!<CR>
 :set listchars=eol:¬,tab:>-,trail:~,extends:>,precedes:<
 
+" swap word with buffer
+map <leader>s diwh"0p<CR>
 
 " Other win 
 " easy edit vimrc
