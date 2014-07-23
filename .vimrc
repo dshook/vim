@@ -86,6 +86,9 @@ filetype plugin indent on    " required
 if win
     set guifont=Consolas:h10:cANSI
 endif
+if mac
+ set guifont=Inconsolata:h14
+endif
 syntax enable
 colorscheme codeschool
 
@@ -213,9 +216,10 @@ if win
 endif
 
 " detect indent
-:autocmd BufReadPost * :DetectIndent 
+":autocmd BufReadPost * :DetectIndent 
 :let g:detectindent_preferred_expandtab = 0
 :let g:detectindent_preferred_indent = 4
+:let g:detectindent_max_lines_to_analyse = 256
 
 "key binds -----------------------------------------------------------------
 
@@ -256,6 +260,9 @@ nmap <leader>w :set list!<CR>
 
 " swap word with buffer
 map <leader>s diwh"0p<CR>
+
+" Search for word under cursor in current dir & subdirs 
+map <F2> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
 
 " easy edit vimrc
 map <leader>? :e ~/.vimrc<CR>
