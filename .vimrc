@@ -86,9 +86,11 @@ filetype plugin indent on    " required
 if win
     set guifont=Consolas:h10:cANSI
 endif
+
 if mac
- set guifont=Inconsolata:h14
+    set guifont=Inconsolata:h14
 endif
+
 syntax enable
 colorscheme codeschool
 
@@ -132,7 +134,11 @@ set ruler
 
 if mac
     " 2 spaces for my web life
-    au BufNewFile,BufReadPost *.less,*.hbs,*.coffee,*.js,*.css,*.scss,*.json,*.html setl shiftwidth=2  expandtab
+    au BufNewFile,BufReadPost *.less,*.hbs,*.coffee,*.js,*.css,*.scss,*.json,*.html
+		\ setl tabstop=2 |
+		\ setl softtabstop=2 |
+		\ setl shiftwidth=2 |
+        \ setl expandtab
 
     " Markdown files
     au Bufread,BufNewFile *.md set filetype=markdown
@@ -267,9 +273,11 @@ map <F2> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
 " easy edit vimrc
 map <leader>? :e ~/.vimrc<CR>
 
-"remap autocomplete to ctrl space
-inoremap <C-space> <C-n>
-inoremap <expr> <Tab> pumvisible() ? "\<C-Y>" : "\<Tab>"
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-p>"
+if win
+	"remap autocomplete to ctrl space
+	inoremap <C-space> <C-n>
+	inoremap <expr> <Tab> pumvisible() ? "\<C-Y>" : "\<Tab>"
+	inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+	inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-p>"
+endif
 
