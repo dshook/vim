@@ -140,9 +140,11 @@ if mac
 		\ setl shiftwidth=2 |
         \ setl expandtab
 
-    " Markdown files
-    au Bufread,BufNewFile *.md set filetype=markdown
 endif
+
+" syntax higlight special things
+au Bufread,BufNewFile *.md set filetype=markdown
+au Bufread,BufNewFile *.hbs set filetype=html
 
 " plugin settings ------------------------------------------------------
 
