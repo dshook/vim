@@ -48,7 +48,9 @@ Plugin 'joonty/vdebug'
 Plugin 'bling/vim-airline'
 
 " Javascript / JSON / Coffeescript
-Plugin 'marijnh/tern_for_vim'
+if mac
+    Plugin 'marijnh/tern_for_vim'
+endif
 Plugin 'elzr/vim-json'
 " Plugin 'JavaScript-Indent'
 Plugin 'jelera/vim-javascript-syntax'
@@ -58,11 +60,8 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'ciaranm/detectindent'
 
 " Color schemes
-Plugin 'BusyBee'
-Plugin 'Blueshift'
 Plugin 'Wombat'
 Plugin 'twilight'
-Plugin 'pyte'
 Plugin 'mayansmoke'
 Plugin 'Risto-Color-Scheme'
 Plugin 'nanotech/jellybeans.vim'
@@ -75,6 +74,7 @@ Plugin 'sjl/badwolf'
 Plugin 'sickill/vim-monokai'
 Plugin 'john2x/flatui.vim'
 Plugin 'noahfrederick/vim-hemisu'
+Plugin 'morhetz/gruvbox'
 
 
 " All of your Plugins must be added before the following line
@@ -86,13 +86,11 @@ filetype plugin indent on    " required
 if win
     set guifont=Consolas:h10:cANSI
 endif
-
 if mac
-    set guifont=Inconsolata:h14
+ set guifont=Inconsolata:h14
 endif
-
 syntax enable
-colorscheme codeschool
+colorscheme gruvbox
 
 set tabstop=4
 set softtabstop=4
@@ -232,6 +230,7 @@ endif
 "key binds -----------------------------------------------------------------
 
 " auto search var under cursor
+" :so $VIMRUNTIME/syntax/hitest.vim
 :autocmd CursorMoved * silent! exe printf('match Visual /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
 "buffer shiet
@@ -275,11 +274,9 @@ map <F2> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
 " easy edit vimrc
 map <leader>? :e ~/.vimrc<CR>
 
-if win
-	"remap autocomplete to ctrl space
-	inoremap <C-space> <C-n>
-	inoremap <expr> <Tab> pumvisible() ? "\<C-Y>" : "\<Tab>"
-	inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-	inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-p>"
-endif
+"remap autocomplete to ctrl space
+inoremap <C-space> <C-n>
+inoremap <expr> <Tab> pumvisible() ? "\<C-Y>" : "\<Tab>"
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-p>"
 
