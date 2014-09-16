@@ -33,6 +33,7 @@ Plugin 'gmarik/Vundle.vim'
 " Editing utils
 Plugin 'Align'
 if mac
+    Plugin 'SirVer/ultisnips'
     Plugin 'Valloric/YouCompleteMe'
 endif
 Plugin 'scrooloose/syntastic'
@@ -58,6 +59,9 @@ Plugin 'Chiel92/vim-autoformat'
 
 " Detect indent
 Plugin 'ciaranm/detectindent'
+
+" My snips 
+Plugin 'dshook/vim', {'rtp': 'my-stuff/', 'name': 'my-stuff'}
 
 " Color schemes
 Plugin 'Wombat'
@@ -91,6 +95,7 @@ if mac
 endif
 syntax enable
 colorscheme gruvbox
+set background=dark
 
 set tabstop=4
 set softtabstop=4
@@ -161,6 +166,7 @@ nmap <silent> <leader>t :NERDTreeToggle<CR>
 " Search highlight
 let g:aghighlight=1
 
+" Autocomplete and snip magic
 if mac
     " tern
     let g:tern_show_signature_in_pum=1
@@ -172,6 +178,10 @@ if mac
     let g:ycm_autoclose_preview_window_after_completion=1
     let g:ycm_autoclose_preview_window_after_insertion=1
     let g:ycm_cache_omnifunc=0
+
+    " ultisnips - custom trigger button
+    let g:UltiSnipsSnippetDirectories=["snips"]
+    let g:UltiSnipsExpandTrigger="<c-m>"
 endif
 
 " Align Settings

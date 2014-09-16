@@ -1,0 +1,408 @@
+# ---------------------------------------------------------
+# nice requires
+
+snippet reqb "require backbone"
+var Backbone = require('backbone');
+endsnippet
+
+snippet reqq "require Q"
+var Q = require('q');
+endsnippet
+
+snippet reqp "require bluebird Promise"
+var Promise = require('bluebird');
+endsnippet
+
+snippet requ "require underscore"
+var _ = require('underscore');
+endsnippet
+
+snippet reqe "require extends_ method from typedef"
+var extends_ = require('typedef').extends;
+endsnippet
+
+snippet reqi "require inherits from util"
+var inherits = require('util').inherits;
+endsnippet
+
+snippet reqj "require jquÃ¡"
+var $ = require('jquery');
+endsnippet
+
+snippet reqd "require debug"
+var debug = require('debug')('${1:tag}');
+endsnippet
+
+snippet reqr "require a lib at root"
+var $1 = require('${1:module}');
+endsnippet
+
+snippet req "require a lib"
+var $2 = require('${1:library}').${2:module};
+endsnippet
+
+# ---------------------------------------------------------
+# tiny ecs requires
+
+snippet reqem "require entity manager"
+var EntityManager = require('lib/tiny-ecs');
+endsnippet
+
+snippet reqen "require entity"
+var Entity = require('lib/tiny-ecs').Entity;
+endsnippet
+
+snippet reqv "require vec2"
+var Vec2 = require('lib/vec2');
+endsnippet
+
+snippet reqt "require Transform"
+var Transform = require('lib/tiny-ecs').Transform;
+endsnippet
+
+# ---------------------------------------------------------
+# events
+
+snippet event "Declare an event constant"
+/**
+ * @event
+ */
+${1:Class}.on${2:EventName} = 'on$2';
+endsnippet
+
+# ---------------------------------------------------------
+# members
+
+snippet mem "Declare a public class member"
+/**
+ * @type {${4:Type}}
+ */
+${1:Class}.prototype.${2:memberVariable} = ${3:defaultValue};
+endsnippet
+
+# ---------------------------------------------------------
+# Functions and classes
+
+snippet mdclass "Define a module-level class"
+module.exports = $1;
+
+/**
+ * @constructor
+ */
+function $1()
+{
+
+}
+endsnippet
+
+snippet mdpclass "Define a module-level class that can be pooled"
+module.exports = $1;
+
+/**
+ * @constructor
+ */
+function $1()
+{
+	this.__init();
+}
+
+/**
+ * @private
+ */
+$1.prototype.__init = function()
+{
+
+};
+endsnippet
+
+snippet mdiclass "Define a module-level inherited class"
+module.exports = $1;
+
+var inherits = require('util').inherits;
+
+inherits($1, ${2:BaseClass});
+
+/**
+ * @constructor
+ */
+function $1()
+{
+  $1.super_.apply(this, arguments);
+}
+endsnippet
+
+snippet mdsclass "Define a module-level derived class"
+module.exports = $1;
+
+var extends_ = require('typedef').extends;
+
+extends_($1, ${2:BaseClass});
+
+/**
+ * @constructor
+ */
+function $1()
+{
+  $1.Super.apply(this, arguments);
+}
+endsnippet
+
+snippet fp "Define a class member function"
+${1:Class}.prototype.${2:function} = function($3)
+{
+  $4
+};
+endsnippet
+
+snippet sfp "Define a class member function that calls the base class' method"
+${1:Class}.prototype.${2:function} = function($3)
+{
+  $1.Super.prototype.$2.apply(this, arguments);
+  $4
+};
+endsnippet
+
+snippet sf "Define a static class function"
+${1:Class}.${2:function} = function($3)
+{
+  $4
+};
+endsnippet
+
+snippet f "Define an anonymous function"
+function($1) {
+  $2
+}
+endsnippet
+
+snippet iife "Define an IIFE"
+(function($1) {
+  $2
+})($1);
+endsnippet
+
+# ---------------------------------------------------------
+# loop constructs
+
+snippet foriter "Iterate over elements in an iterable"
+var iter = ${2:iterable}.iterator();
+for (var ${3:n}; !($3 = iter.next()).done; ) {
+  var ${1:item} = $3.value;
+  $4
+}
+endsnippet
+
+snippet forin "Iterate over elements in an array"
+for (var ${3:n} = 0; $3 < ${2:items}.length; $3++) {
+  var ${1:item} = $2[$3];
+  $4
+}
+endsnippet
+
+snippet rfor "Iterate over elements in an array backwards"
+for (var ${3:n} = ${2:items}.length - 1; $3 >= 0; $3--) {
+  var ${1:item} = $2[$3];
+  $4
+}
+endsnippet
+
+snippet forof "Iterate over keys in an object"
+for (var ${1:key} in ${2:ref}) {
+  var ${3:value} = $2[$1];
+  ${4}
+}
+endsnippet
+
+snippet forofown "Iterate over keys in an object (has own check)"
+for (var ${1:key} in ${2:ref}) {
+  if (!$2.hasOwnProperty(key)) continue;
+
+  var ${3:value} = $2[$1];
+  ${4}
+}
+endsnippet
+
+# ---------------------------------------------------------
+# logic constructs
+
+snippet if "if"
+if ($1) {
+  $2
+}
+endsnippet
+
+snippet ife "if __ else"
+if ($1) {
+  $2
+} else {
+
+}
+endsnippet
+
+# ---------------------------------------------------------
+# promises
+
+snippet pnew "new Promise()"
+new Promise(function(resolve, reject) {
+  $2
+});
+endsnippet
+
+snippet pthen "then() call"
+.then(function(${1:value}) {
+  $2
+});
+endsnippet
+
+snippet pcatch "catch() call"
+.catch(function(err) {
+  $2
+});
+endsnippet
+
+# ---------------------------------------------------------
+# tape tests
+
+snippet mtest
+var test = require('tape');
+var mock = require('nodemock').mock;
+endsnippet
+
+snippet test
+test('${1:Test Description}', function(t) {
+  t.plan(1);
+  $2
+});
+endsnippet
+
+snippet tse
+t.strictEqual(${1:a}, ${2:b}, '${3:message}');
+endsnippet
+
+# ---------------------------------------------------------
+# misc
+
+snippet clog "console.log"
+console.log($1);
+endsnippet
+
+snippet rest "... argument op from coffee"
+[].slice.call(arguments, ${1:providedArgCount}) || [];
+endsnippet
+
+# ---------------------------------------------------------
+# JSDoc
+
+snippet doc
+/**
+ * $1
+ */
+endsnippet
+
+snippet param
+@param {${1:Type}} ${2:param}
+endsnippet
+
+snippet type
+@type {${1:Type}}
+endsnippet
+
+snippet ret
+@return {${1:Type}}
+endsnippet
+
+# ---------------------------------------------------------
+# Creating an Iterable object
+
+snippet itermem "Add implementation for iterable"
+/**
+ * Get an iterator for this class.
+ * @return {Iterator}
+ */
+$1.prototype.iterator = function()
+{
+  return new Iterator(this);
+};
+
+/**
+ * An iterator used to iterate over a $1.
+ * @constructor
+ * @param {$1} iterable
+ */
+function Iterator(iterable)
+{
+  this.iterable = iterable;
+}
+
+/**
+ * Get the next value in the iteration.
+ * @return {{done:bool, value:any}}
+ */
+Iterator.prototype.next = function()
+{
+  return { done: true, value: undefined };
+};
+endsnippet
+
+# ---------------------------------------------------------
+# Service
+
+snippet mservice "Service module"
+module.exports = ${1:ServiceClass};
+
+var Promise     = require('bluebird').Promise;
+var Application = require('billy');
+
+/**
+ * @constructor
+ * @param {Application} app
+ */
+function $1(app)
+{
+  this.app = app;
+}
+
+/**
+ * @return {Promise}
+ */
+$1.prototype.start = function()
+{
+
+};
+endsnippet
+
+# ---------------------------------------------------------
+# middleware function
+
+snippet mmiddleware "Middleware module"
+module.exports = ${1:middleware};
+
+function $1()
+{
+  return function(req, res, next)
+  {
+    next();
+  };
+}
+endsnippet
+
+snippet mrouter "router middleware module"
+module.exports = ${1:middleware};
+
+var Router = require('express').Router;
+
+function $1()
+{
+  var router = new Router();
+
+  return router;
+}
+endsnippet
+
+# ---------------------------------------------------------
+# game stuff
+
+snippet va "aquire and free a vector"
+var ${1:v} = Vec2.aquire();
+Vec2.release($1);
+endsnippet
