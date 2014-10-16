@@ -61,7 +61,7 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'ciaranm/detectindent'
 
 " My snips 
-Plugin 'dshook/vim', {'rtp': 'my-stuff/', 'name': 'my-stuff'}
+Plugin 'dshook/vim', {'name': 'my-stuff'}
 
 " Color schemes
 Plugin 'Wombat'
@@ -79,6 +79,7 @@ Plugin 'sickill/vim-monokai'
 Plugin 'john2x/flatui.vim'
 Plugin 'noahfrederick/vim-hemisu'
 Plugin 'morhetz/gruvbox'
+Plugin 'whatyouhide/vim-gotham'
 
 
 " All of your Plugins must be added before the following line
@@ -94,8 +95,7 @@ if mac
  set guifont=Inconsolata:h14
 endif
 syntax enable
-colorscheme gruvbox
-set background=dark
+colorscheme gotham
 
 set tabstop=4
 set softtabstop=4
@@ -180,7 +180,7 @@ if mac
     let g:ycm_cache_omnifunc=0
 
     " ultisnips - custom trigger button
-    let g:UltiSnipsSnippetDirectories=["snips"]
+    let g:UltiSnipsSnippetDirectories=["my-stuff/snips"]
     let g:UltiSnipsExpandTrigger="<c-m>"
 endif
 

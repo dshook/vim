@@ -1,0 +1,1 @@
+mklink /H "C:\Users\dshook\.vimrc" "C:\Users\dshook\Dropbox\vim\.vimrc"
